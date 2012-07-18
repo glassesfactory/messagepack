@@ -1,4 +1,4 @@
-/**
+﻿/**
  *
  * This is a AS3 Port of the MessagePack object serialization library
  *
@@ -8,9 +8,9 @@
  *
  * For more information about MessagePack object serialization, visit: http://msgpack.org/
  *
- * @author	Joost Harts
+ * @author    Joost Harts
  * @company De Monsters
- * @link 	http://www.deMonsters.com
+ * @link     http://www.deMonsters.com
  * @version 0.1
  *
  *
@@ -33,65 +33,65 @@
 
 package org.messagepack.serialization
 {
-	import flash.utils.ByteArray;
+    import flash.utils.ByteArray;
 
 
-	final public class MessagePack
-	{
+    final public class MessagePack
+    {
 
 
 
-		/**
-		 * Encodes a object into a MessagePack ByteArray.
-		 *
-		 * @param o The object to create a MessagePack ByteArray for
-		 * @return the MessagePack ByteArray representing o
-		 * @langversion ActionScript 3.0
-		 * @playerversion Flash 9.0
-		 * @tiptext
-		 */
-		public static function encode( o:* ):ByteArray
-		{
-			return new MessagePackEncode( o ).getByteArray();
-		}
+        /**
+         * Encodes a object into a MessagePack ByteArray.
+         *
+         * @param o The object to create a MessagePack ByteArray for
+         * @return the MessagePack ByteArray representing o
+         * @langversion ActionScript 3.0
+         * @playerversion Flash 9.0
+         * @tiptext
+         */
+        public static function encode(o:*):ByteArray
+        {
+            return MessagePackEncode.encode(o);
+        }
 
-		/**
-		 * Decodes a MessagePack ByteArray into a native object.
-		 *
-		 * @param bytes The MessagePack ByteArray representing the object
-		 * @return A native object as specified by bytes
-		 * @langversion ActionScript 3.0
-		 * @playerversion Flash 9.0
-		 * @tiptext
-		 */
-		public static function decode(bytes:ByteArray):*
-		{
-			return new MessagePackDecode(bytes).getObject();
-		}
+        /**
+         * Decodes a MessagePack ByteArray into a native object.
+         *
+         * @param bytes The MessagePack ByteArray representing the object
+         * @return A native object as specified by bytes
+         * @langversion ActionScript 3.0
+         * @playerversion Flash 9.0
+         * @tiptext
+         */
+        public static function decode(bytes:ByteArray):*
+        {
+            return MessagePackDecode.decode(bytes);
+        }
 
-		/**
-		 * Displays a ByteArray into a HEX value String, can be usefull for debugging.
-		 *
-		 * @param bytes The ByteArray representing the object
-		 * @return A HEX String as specified by bytes
-		 * @langversion ActionScript 3.0
-		 * @playerversion Flash 9.0
-		 * @tiptext
-		 */
-		public static function rawBytesToHexString(bytes:ByteArray):String{
-			//To show hex value's of a byte array (doesnt add 0x)
+        /**
+         * Displays a ByteArray into a HEX value String, can be usefull for debugging.
+         *
+         * @param bytes The ByteArray representing the object
+         * @return A HEX String as specified by bytes
+         * @langversion ActionScript 3.0
+         * @playerversion Flash 9.0
+         * @tiptext
+         */
+        public static function rawBytesToHexString(bytes:ByteArray):String
+        {
+            //To show hex value's of a byte array (doesnt add 0x)
 
-					var s:String=""; 
-					while (bytes.position < bytes.length)
-					{   
-						var n:String = bytes.readUnsignedByte().toString(16); 
-						if(n.length<2){ 
-							 n="0"+n; 
-						} 
-						 s+=n; 
-					} 
-					return "HEX: " + s;
-
-		}
-	}
+            var s:String=""; 
+            while (bytes.position < bytes.length)
+            {   
+                var n:String = bytes.readUnsignedByte().toString(16); 
+                if(n.length<2) {
+                     n="0"+n; 
+                } 
+                 s+=n; 
+            } 
+            return "HEX: " + s;
+        }
+    }
 }
