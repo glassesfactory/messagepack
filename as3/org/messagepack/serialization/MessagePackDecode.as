@@ -1,4 +1,4 @@
-/**
+﻿/**
  *
  * This is a AS3 Port of the MessagePack object serialization library
  *
@@ -64,14 +64,14 @@ package org.messagepack.serialization
 				// The byte identifier
 				var byteType:int = input.readUnsignedByte();
 
-				if (byteType > 0x00 && byteType < 0x7f) {
+				if (byteType >= 0x00 && byteType < 0x7f) {
 					// Positive FixNum
 					var fixNumPos:int = byteType;
 					object = fixNumPos;
 				}
-				else if (byteType > 0xe0 && byteType < 0xff) {
+				else if (byteType > 0xe0 && byteType <= 0xff) {
 					// Negative FixNum
-					var fixNumNeg:int = byteType;
+					var fixNumNeg:int = byteType|~0xff;
 					object = fixNumNeg;
 				}
 				else if (byteType == 0xc2) {

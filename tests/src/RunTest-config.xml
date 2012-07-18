@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flex-config>
+    <output>../bin/runtest.swf</output>
+    <compiler>
+        <debug>true</debug>
+        <library-path append="true">
+            <path-element>../lib</path-element>
+        </library-path>
+        <source-path>
+            <path-element>.</path-element>
+            <path-element>../../as3</path-element>
+        </source-path>
+    </compiler>
+    <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+</flex-config>

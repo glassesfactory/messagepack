@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 
  * This is a AS3 Port of the MessagePack object serialization library
  * 
@@ -180,7 +180,7 @@ package org.messagepack.serialization
 		private static function packNumber(value:Number, output:ByteArray):void
 		{
 			var roundCheck:Number = value % 1;
-			if (value < int.MAX_VALUE && value > int.MIN_VALUE && roundCheck == 0) {
+			if (value <= int.MAX_VALUE && value >= int.MIN_VALUE && roundCheck == 0) {
 				packInt(value, output);	
 			} else {
 				
