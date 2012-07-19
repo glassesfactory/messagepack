@@ -54,7 +54,11 @@ package org.messagepack.serialization
 		{
 			var output:ByteArray = new ByteArray();
 			var name:String = getQualifiedClassName(input);
-			var type:Class = getDefinitionByName(name) as Class;
+			var type:Class;
+			try {
+				type = getDefinitionByName(name) as Class;
+			}
+			catch (e:Error) {}
 
 			switch(type) {
 				case int:

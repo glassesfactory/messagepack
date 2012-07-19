@@ -64,12 +64,12 @@ package org.messagepack.serialization
 				// The byte identifier
 				var byteType:int = input.readUnsignedByte();
 
-				if (byteType >= 0x00 && byteType < 0x7f) {
+				if (byteType >= 0x00 && byteType <= 0x7f) {
 					// Positive FixNum
 					var fixNumPos:int = byteType;
 					object = fixNumPos;
 				}
-				else if (byteType > 0xe0 && byteType <= 0xff) {
+				else if (byteType >= 0xe0 && byteType <= 0xff) {
 					// Negative FixNum
 					var fixNumNeg:int = byteType|~0xff;
 					object = fixNumNeg;
@@ -96,7 +96,8 @@ package org.messagepack.serialization
 				}
 				else if (byteType == 0xcc) {
 					// uint 8
-					var uint8:uint = input.readByte();
+					// FIXME: should more better code?
+					var uint8:uint = 0x100 + input.readByte();
 					object = uint8;
 				}
 				else if (byteType == 0xcd) {
