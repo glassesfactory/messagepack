@@ -96,13 +96,12 @@ package org.messagepack.serialization
 				}
 				else if (byteType == 0xcc) {
 					// uint 8
-					// FIXME: should more better code?
-					var uint8:uint = 0x100 + input.readByte();
+					var uint8:uint = input.readUnsignedByte();
 					object = uint8;
 				}
 				else if (byteType == 0xcd) {
 					//uint 16
-					var uint16:uint = input.readShort();
+					var uint16:uint = input.readUnsignedShort();
 					object = uint16;
 				}
 				else if (byteType == 0xce) {
