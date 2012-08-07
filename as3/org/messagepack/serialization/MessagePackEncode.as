@@ -164,28 +164,36 @@ package org.messagepack.serialization
 				// fixnum
 				output.writeByte(value);
 			} else {
-				if(value < (1 << 8)) {
-					// unsigned 8
-					output.writeByte(0xcc);
-					output.writeByte(value);
-				} else if(value < (1 << 16)) {
-					// unsigned 16
-					output.writeByte(0xcd);
-					output.writeShort(value);
-				} else {
-					// unsigned 32
-					output.writeByte(0xce);
-					output.writeUnsignedInt(value);
-				}
+				packUint(value, output);
 			}
 		}
 
-		
+		private static function packUint(value:uint, output:ByteArray):void
+		{
+			if(value < (1 << 8)) {
+				// unsigned 8
+				output.writeByte(0xcc);
+				output.writeByte(value);
+			} else if(value < (1 << 16)) {
+				// unsigned 16
+				output.writeByte(0xcd);
+				output.writeShort(value);
+			} else {
+				// unsigned 32
+				output.writeByte(0xce);
+				output.writeUnsignedInt(value);
+			}
+		}
+
 		private static function packNumber(value:Number, output:ByteArray):void
 		{
 			var roundCheck:Number = value % 1;
-			if (value <= int.MAX_VALUE && value >= int.MIN_VALUE && roundCheck == 0) {
-				packInt(value, output);	
+			if (roundCheck == 0) {
+				if (value >= 0 && value <= uint.MAX_VALUE) {
+					packUint(value, output);
+				} else {
+					packInt(value, output);
+				}
 			} else {
 				
 				if (value > LONG_MIN_VALUE && value < LONG_MAX_VALUE) {

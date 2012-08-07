@@ -6,6 +6,6 @@
     {
         //public var iface:MessagePackTest;
         public var encode:MessagePackEncodeTest;
-        public var decode:MessagePackDecodeTest;
+        //public var decode:MessagePackDecodeTest;
     }
 }

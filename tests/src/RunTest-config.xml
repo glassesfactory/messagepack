@@ -3,6 +3,7 @@
     <output>../bin/runtest.swf</output>
     <compiler>
         <debug>true</debug>
+        <incremental>true</incremental>
         <library-path append="true">
             <path-element>../lib</path-element>
         </library-path>
